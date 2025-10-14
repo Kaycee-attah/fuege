@@ -1,0 +1,7 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Modern Chair Icon -->
+  <rect x="30" y="40" width="40" height="5" rx="2" fill="#42b883"/>
+  <rect x="35" y="45" width="30" height="10" rx="2" fill="#42b883"/>
+  <rect x="40" y="55" width="20" height="5" rx="1" fill="#2c5aa0"/>
+  <path d="M35 40L45 20H55L65 40H35Z" fill="#42b883" stroke="#2c5aa0" stroke-width="2"/>
+</svg>
