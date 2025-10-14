@@ -136,7 +136,7 @@ export default {
 
       try {
         const paymentData = {
-          public_key: 'FLWPUBK_TEST-fcb924bf6907a446ad71e78753bef2be-X', // Test public key
+          public_key: import.meta.env.VITE_FLUTTERWAVE_PUBLIC_KEY,
           tx_ref: this.generateTransactionReference(),
           amount: this.amount,
           currency: 'NGN',
