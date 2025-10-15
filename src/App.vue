@@ -12,20 +12,21 @@
         <nav class="nav-menu">
           <router-link to="/" class="nav-link">Home</router-link>
           <router-link to="/customize" class="nav-link">Customize</router-link>
-          <router-link to="/cart" class="nav-link cart-link">
+          <button @click="cartStore.toggleCart()" class="cart-icon-btn">
             🛒 Cart
             <span v-if="cartStore.totalItems > 0" class="cart-badge">
               {{ cartStore.totalItems }}
             </span>
-          </router-link>
+          </button>
         </nav>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="app-main">
-      <router-view />
-    </main>
+    <!-- Main Content Area -->
+    <router-view></router-view>
+
+    <!-- Cart Sidebar -->
+    <CartSidebar />
 
     <!-- Footer -->
     <footer class="app-footer">
@@ -41,7 +42,6 @@
             <h4>Explore</h4>
             <router-link to="/">Home</router-link>
             <router-link to="/customize">Customizer</router-link>
-            <router-link to="/cart">Cart</router-link>
           </div>
           
           <div class="footer-info">
@@ -61,20 +61,26 @@
 </template>
 
 <script>
-import { useCartStore } from './stores/cart'
+import { useCartStore } from './stores/cart';
+import CartSidebar from './components/CartSidebar.vue';
 
 export default {
   name: 'App',
+  components: {
+    CartSidebar
+  },
   setup() {
-    const cartStore = useCartStore()
-    return { cartStore }
+    const cartStore = useCartStore();
+    
+    return {
+      cartStore // Return the entire store
+    };
   }
-}
+};
 </script>
 
 <style>
 @import './assets/css/brand.css';
-
 * {
   margin: 0;
   padding: 0;
@@ -82,10 +88,9 @@ export default {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
   line-height: 1.6;
-  color: var(--fuege-dark);
-  background-color: var(--fuege-light);
 }
 
 /* Header Styles */
@@ -138,28 +143,38 @@ body {
   color: var(--fuege-primary);
 }
 
-.cart-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.cart-icon-btn {
+  background: none;
+  border: none;
+  color: #333;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.cart-icon-btn:hover {
+  /* background: #2c5aa0; */
+  color: var(--fuege-primary);
 }
 
 .cart-badge {
+  position: absolute;
+  top: -5px;
+  right: 5px;
   background: var(--fuege-secondary);
   color: white;
   border-radius: 50%;
   width: 20px;
   height: 20px;
+  font-size: 0.8em;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8em;
-  font-weight: bold;
-}
-
-/* Main Content */
-.app-main {
-  min-height: calc(100vh - 70px - 200px);
 }
 
 /* Footer Styles */

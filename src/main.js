@@ -12,4 +12,9 @@ pinia.use(piniaPluginPersistedstate)
 
 app.use(pinia)
 app.use(router)
+
+if (process.env.NODE_ENV === 'production') {
+  app.config.devtools = false
+}
+
 app.mount('#app')
