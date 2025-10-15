@@ -25,6 +25,11 @@ const routes = [
     name: 'OrderConfirmation',
     component: OrderConfirmation,
     props: true
+  },
+   {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    
   }
 ]
 
